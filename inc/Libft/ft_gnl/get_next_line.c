@@ -21,7 +21,7 @@ char	*get_next_line(int fd)
 	i = 1;
 	dest = NULL;
 	if (BUFFER_SIZE == 0 || fd < 0)
-		return (0);
+		return (NULL);
 	if (ft_check(buff) == 1)
 	{
 		ft_buf_cut(buff);

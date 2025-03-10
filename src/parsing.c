@@ -6,7 +6,7 @@
 /*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 12:20:55 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/04 14:13:26 by ozdemir          ###   ########.fr       */
+/*   Updated: 2025/03/10 15:33:18 by ozdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,43 +15,51 @@
 void	parse_map(t_all **all, int fd)
 {
 	char	*line;
+	int	map_started;
+	char	*copy;
 
+	map_started = 0;
 	line = get_next_line(fd);
-	if (line == NULL)
-		exit_error("File is empty");
 	while (line != NULL)
 	{
-		if (is_texture(line))
-			store_texture(*all, line);
-		else if (is_color(line))
-			store_color(*all, line);
+		copy = skip_space(line);
+		if (line[0] == '\0' || line[0] == '\n')
+			free(line);
+		else if (!map_started && (is_texture(copy) || is_color(copy)))
+			storing(all, copy);
 		else if (is_allowed_char(line))
+		{
+			map_started = 1;
 			store_map(all, line);
-		free(line);
+		}
+		else if (map_started)
+			exit_error_free(line, "Invalid content");
 		line = get_next_line(fd);
 	}
-	if ((*all)->count_no > 1 || (*all)->count_so > 1 || (*all)->count_we > 1
-		|| (*all)->count_ea > 1 || (*all)->count_f > 1 || (*all)->count_c > 1)
-		exit_error("More than 1 NO/SO/WE/EA/F/C");
-}
-
-void	init_map(t_all **all, char *filename)
-{
-	int	fd;
-
-	fd = open(filename, O_RDONLY);
-	if (fd == -1)
-		exit_error("Error opening file");
-	parse_map(all, fd);
-	close(fd);
+	if (!map_started)
+		exit_error("No correct map found");
 }
 
 void	parsing(t_all **all, int ac, char **av)
 {
+	int fd;
+
 	check_args(ac, av);
 	init_all(all);
-	init_map(all, av[1]);
-	wall_checker(*all);
+	fd = open(av[1], O_RDONLY);
+	if (fd == -1)
+		exit_error("Error opening file");
+	parse_map(all, fd);
+	close(fd);
+	check_config(*all);
+	if (check_valid_chars(*all))
+		exit_error("Invalid char in map");
+	replace_inner_spaces(*all);
+	print_map_data(*all);
+	if (wall_checker(*all))
+		exit_error("Map is not closed");
+	count_player(*all);
+
 }
 
 void	check_args(int ac, char **av)

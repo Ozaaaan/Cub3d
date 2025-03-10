@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_utils.c                                    :+:      :+:    :+:   */
+/*   parsing2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:14:49 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/03 15:10:38 by ozdemir          ###   ########.fr       */
+/*   Updated: 2025/03/06 16:13:46 by ozdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,27 @@ void	store_texture(t_all *all, char *line)
 {
 	if (ft_strncmp(line, "NO ", 3) == 0)
 	{
+		if (all->no)
+			exit_error_free(line, "Duplicate NO");
 		all->no = ft_strdup(line + 3);
-		all->count_no += 1;
 	}
 	else if (ft_strncmp(line, "SO ", 3) == 0)
 	{
+		if (all->so)
+			exit_error_free(line, "Duplicate SO");
 		all->so = ft_strdup(line + 3);
-		all->count_so += 1;
 	}
 	else if (ft_strncmp(line, "WE ", 3) == 0)
 	{
+		if (all->we)
+			exit_error_free(line, "Duplicate WE");
 		all->we = ft_strdup(line + 3);
-		all->count_we += 1;
 	}
 	else if (ft_strncmp(line, "EA ", 3) == 0)
 	{
+		if (all->ea)
+			exit_error_free(line, "Duplicate EA");
 		all->ea = ft_strdup(line + 3);
-		all->count_ea += 1;
 	}
 }
 
@@ -59,45 +63,51 @@ void	store_color(t_all *all, char *line)
 {
 	if (line[0] == 'F')
 	{
+		if (all->f)
+			exit_error_free(line, "Duplicate F");
 		all->f = parse_color(line + 2);
-		all->count_f += 1;
 	}
 	else if (line[0] == 'C')
 	{
+		if (all->c)
+			exit_error_free(line, "Duplicate C");
 		all->c = parse_color(line + 2);
-		all->count_c += 1;
 	}
 }
 
 void	first_init_map(t_all **all, char *line)
 {
-	(*all)->map = ft_calloc(2, sizeof(char *));
-	(*all)->map[0] = ft_strdup(line);
-	(*all)->map[1] = NULL;
+	(*all)->map_data = ft_calloc(2, sizeof(char *));
+	if (!(*all)->map_data)
+		exit_error("Malloc failed");
+	(*all)->map_data[0] = ft_strdup(line);
+	(*all)->map_data[1] = NULL;
 }
 
 void	store_map(t_all **all, char *line)
 {
+	char	*cleaned_line;
 	char	**new_map;
 	int		i;
 
-	if (!(*all)->map)
-		first_init_map(all, line);
+	cleaned_line = ft_strtrim(line, "\n");
+	if (!(*all)->map_data)
+		first_init_map(all, cleaned_line);
 	else
 	{
 		i = 0;
-		while ((*all)->map[i])
+		while ((*all)->map_data[i])
 			i++;
 		new_map = ft_calloc(i + 2, sizeof(char *));
 		i = 0;
-		while ((*all)->map[i])
+		while ((*all)->map_data[i])
 		{
-			new_map[i] = ft_strdup((*all)->map[i]);
+			new_map[i] = ft_strdup((*all)->map_data[i]);
 			i++;
 		}
-		new_map[i] = ft_strdup(line);
+		new_map[i] = ft_strdup(cleaned_line);
 		new_map[i + 1] = NULL;
-		free_tab((*all)->map);
-		(*all)->map = new_map;
+		free_tab((*all)->map_data);
+		(*all)->map_data = new_map;
 	}
 }

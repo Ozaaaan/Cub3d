@@ -6,16 +6,17 @@
 /*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 15:22:58 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/03 15:30:33 by ozdemir          ###   ########.fr       */
+/*   Updated: 2025/03/04 15:25:56 by ozdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	exit_error(char *str)
+char    *skip_space(char *line)
 {
-	printf("Error\n%s\n", str);
-	exit(EXIT_FAILURE);
+        while (*line && (*line == ' ' || *line == '\t'))
+                line++;
+        return(line);
 }
 
 void	free_tab(char **tab)
@@ -56,5 +57,7 @@ void	free_all(t_all *all)
 {
 	if (all->mlx)
 		mlx_terminate(all->mlx);
+	if (all->map_data)
+		free_tab(all->map_data);
 	free(all);
 }

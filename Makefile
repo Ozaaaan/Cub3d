@@ -6,7 +6,7 @@
 #    By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/26 13:28:06 by ozdemir           #+#    #+#              #
-#    Updated: 2025/03/03 15:22:34 by ozdemir          ###   ########.fr        #
+#    Updated: 2025/03/06 14:01:15 by ozdemir          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,10 +20,13 @@ INC_DIR = inc
 
 SRC = 	main.c \
 	utils.c \
+	utils2.c \
 	parsing.c \
-	parsing_utils.c \
+	parsing2.c \
+	parsing3.c \
 	verif.c \
-	map.c
+	map.c \
+	map2.c 
 	
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC))

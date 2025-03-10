@@ -6,30 +6,89 @@
 /*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:20:22 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/03 15:37:36 by ozdemir          ###   ########.fr       */
+/*   Updated: 2025/03/10 12:41:56 by ozdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	wall_checker(t_all *all)
+void	print_map_data(t_all *all)
+{
+	int	i;
+
+	i = 0;
+	printf("Contenu de map_data :\n");
+	while (all->map_data[i])
+	{
+		printf("[%s]\n", all->map_data[i]);
+		i++;
+	}
+}
+
+int	is_player(char c)
+{
+	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
+}
+
+int	is_invalid_position(char **map, int i, int j)
+{
+	int	height;
+	int	len;
+
+	height = 0;
+	while (map[height])
+		height++;
+	len = ft_strlen(map[i]);
+	if (i == 0 || i == height - 1 || j == 0 || j == len - 1)
+		return (1);
+	if ((j > 0 && map[i][j - 1] == ' ') || (j < len - 1 && map[i][j + 1] == ' ')
+		|| (i > 0 && (j >= (int)ft_strlen(map[i - 1]) || map[i - 1][j] == ' '))
+		|| (i < height - 1 && (j >= (int)ft_strlen(map[i + 1]) || map[i + 1][j] == ' ')))
+		return (1);
+	return (0);
+}
+
+int	wall_checker(t_all *all)
 {
 	int	i;
 	int	j;
 
+	i = -1;
+	while (all->map_data[++i])
+	{
+		j = -1;
+		while (all->map_data[i][++j])
+		{
+			if (all->map_data[i][j] == '0' || is_player(all->map_data[i][j]))
+			{
+				if (is_invalid_position(all->map_data, i, j))
+					return (1);
+			}
+		}
+	}
+	return (0);
+}
+
+void	count_player(t_all *all)
+{
+	int	i;
+	int	j;
+	int	count;
+
+	count = 0;
 	i = 0;
-	while (all->map[i])
+	while (all->map_data[i])
 	{
 		j = 0;
-		while (all->map[i][j])
+		while (all->map_data[i][j])
 		{
-			if (i == 0 || i == count_tab(all->map) - 1 || j == 0 || j == ft_strlenn(all->map[i]) - 1)
-			{
-				if (all->map[i][j] != '1')
-					exit_error("Map must be surrounded by walls");
-			}
+			if (all->map_data[i][j] == 'N' || all->map_data[i][j] == 'S'
+				|| all->map_data[i][j] == 'E' || all->map_data[i][j] == 'W')
+				count++;
 			j++;
 		}
 		i++;
 	}
+	if (count != 1)
+		exit_error("Map must contain exactly one player starting position");
 }

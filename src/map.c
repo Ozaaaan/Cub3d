@@ -6,7 +6,7 @@
 /*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:20:22 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/10 12:41:56 by ozdemir          ###   ########.fr       */
+/*   Updated: 2025/03/11 13:27:06 by ozdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,11 @@ int	is_invalid_position(char **map, int i, int j)
 	height = 0;
 	while (map[height])
 		height++;
-	len = ft_strlen(map[i]);
+	len = ft_strlenn(map[i]);
 	if (i == 0 || i == height - 1 || j == 0 || j == len - 1)
 		return (1);
 	if ((j > 0 && map[i][j - 1] == ' ') || (j < len - 1 && map[i][j + 1] == ' ')
-		|| (i > 0 && (j >= (int)ft_strlen(map[i - 1]) || map[i - 1][j] == ' '))
-		|| (i < height - 1 && (j >= (int)ft_strlen(map[i + 1]) || map[i + 1][j] == ' ')))
+		|| map[i - 1][j] == ' ' || ((map[i + 1][j] == ' ')))
 		return (1);
 	return (0);
 }
@@ -53,18 +52,20 @@ int	wall_checker(t_all *all)
 	int	i;
 	int	j;
 
-	i = -1;
-	while (all->map_data[++i])
+	i = 0;
+	while (all->map_data[i])
 	{
-		j = -1;
-		while (all->map_data[i][++j])
+		j = 0;
+		while (all->map_data[i][j])
 		{
 			if (all->map_data[i][j] == '0' || is_player(all->map_data[i][j]))
 			{
 				if (is_invalid_position(all->map_data, i, j))
 					return (1);
 			}
+			j++;
 		}
+		i++;
 	}
 	return (0);
 }

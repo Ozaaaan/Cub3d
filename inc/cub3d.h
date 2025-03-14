@@ -6,7 +6,7 @@
 /*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 14:20:20 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/10 12:54:32 by ozdemir          ###   ########.fr       */
+/*   Updated: 2025/03/11 13:28:53 by ozdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,6 @@ int	char_allowed(char c);
 int	check_valid_chars(t_all *all);
 int	char_allowed(char c);
 void	replace_inner_spaces(t_all *all);
-
+void	replace_zero(t_all *all);
 
 #endif

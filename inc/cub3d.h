@@ -3,40 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 14:20:20 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/17 14:47:48 by ozdemir          ###   ########.fr       */
+/*   Updated: 2025/03/17 15:23:16 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
-# define CUB3D_H
+#define CUB3D_H
 
-# include "Libft/libft.h"
-# include "MLX42.h"
-# include <fcntl.h>
-# include <math.h>
-# include <stdbool.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
+#include "Libft/libft.h"
+#include "MLX42.h"
+#include <fcntl.h>
+#include <math.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 
-# define WIDTH 1000
-# define HEIGHT 800
+#define WIDTH 1000
+#define HEIGHT 800
 
 typedef struct s_all
 {
-	char	**map;
-	char	**map_data;
-	mlx_t	*mlx;
-	char	*no;
-	char	*so;
-	char	*ea;
-	char	*we;
-	int		f;
-	int		c;
-}			t_all;
+	char **map;
+	char **map_data;
+	mlx_t *mlx;
+	char *no;
+	char *so;
+	char *ea;
+	char *we;
+	int f;
+	int c;
+} t_all;
 
 int			map_is_cub(char *filename);
 void		exit_error(char *str);

@@ -6,7 +6,7 @@
 /*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:20:22 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/11 13:27:06 by ozdemir          ###   ########.fr       */
+/*   Updated: 2025/03/17 14:08:02 by ozdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	print_map_data(t_all *all)
 	printf("Contenu de map_data :\n");
 	while (all->map_data[i])
 	{
-		printf("[%s]\n", all->map_data[i]);
+		printf("%s\n", all->map_data[i]);
 		i++;
 	}
 }
@@ -34,6 +34,8 @@ int	is_invalid_position(char **map, int i, int j)
 {
 	int	height;
 	int	len;
+	int	len_above;
+	int	len_below;
 
 	height = 0;
 	while (map[height])
@@ -41,8 +43,12 @@ int	is_invalid_position(char **map, int i, int j)
 	len = ft_strlenn(map[i]);
 	if (i == 0 || i == height - 1 || j == 0 || j == len - 1)
 		return (1);
-	if ((j > 0 && map[i][j - 1] == ' ') || (j < len - 1 && map[i][j + 1] == ' ')
-		|| map[i - 1][j] == ' ' || ((map[i + 1][j] == ' ')))
+	len_above = ft_strlenn(map[i - 1]);
+	len_below = ft_strlenn(map[i + 1]);
+	if (map[i][j - 1] == ' ' || map[i][j + 1] == ' ')
+		return (1);
+	if ((j < len_above && map[i - 1][j] == ' ') || (j < len_below && map[i
+			+ 1][j] == ' '))
 		return (1);
 	return (0);
 }

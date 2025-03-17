@@ -6,7 +6,7 @@
 /*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:14:49 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/17 15:25:59 by cle-berr         ###   ########.fr       */
+/*   Updated: 2025/03/17 15:26:44 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,24 @@ void	add_map_line(t_all **all, char *cleaned_line)
 	(*all)->map_data = new_map;
 }
 
+void	tab_to_space(char *str)
+{
+	if (!str)
+		return ;
+	while (*str)
+	{
+		if (*str == '\t')
+			*str = ' ';
+		str++;
+	}
+}
+
 void	store_map(t_all **all, char *line)
 {
 	char	*cleaned_line;
 
 	cleaned_line = ft_strtrim(line, "\n");
+	tab_to_space(cleaned_line);
 	free(line);
 	if (!(*all)->map_data)
 		first_init_map(all, cleaned_line);

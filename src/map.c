@@ -6,7 +6,7 @@
 /*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:20:22 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/17 15:16:31 by cle-berr         ###   ########.fr       */
+/*   Updated: 2025/03/17 15:22:06 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	print_map_data(t_all *all)
 	printf("Contenu de map_data :\n");
 	while (all->map_data[i])
 	{
-		printf("[%s]\n", all->map_data[i]);
+		printf("%s\n", all->map_data[i]);
 		i++;
 	}
 }
@@ -34,6 +34,8 @@ int	 is_invalid_position(char **map, int i, int j)
 {
 	int	height;
 	int	len;
+	int	len_above;
+	int	len_below;
 
 	height = 0;
 	while (map[height])

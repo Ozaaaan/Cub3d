@@ -6,39 +6,11 @@
 /*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:14:49 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/17 14:37:16 by cle-berr         ###   ########.fr       */
+/*   Updated: 2025/03/17 15:25:59 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	store_texture(t_all *all, char *line)
-{
-	if (ft_strncmp(line, "NO ", 3) == 0)
-	{
-		if (all->no)
-			exit_error("Duplicate NO");
-		all->no = ft_strdup(line + 3);
-	}
-	else if (ft_strncmp(line, "SO ", 3) == 0)
-	{
-		if (all->so)
-			exit_error("Duplicate SO");
-		all->so = ft_strdup(line + 3);
-	}
-	else if (ft_strncmp(line, "WE ", 3) == 0)
-	{
-		if (all->we)
-			exit_error("Duplicate WE");
-		all->we = ft_strdup(line + 3);
-	}
-	else if (ft_strncmp(line, "EA ", 3) == 0)
-	{
-		if (all->ea)
-			exit_error("Duplicate EA");
-		all->ea = ft_strdup(line + 3);
-	}
-}
 
 int	parse_color(char *line)
 {
@@ -65,11 +37,13 @@ void	store_color(t_all *all, char *line)
 	{
 		if (all->f)
 			exit_error("Duplicate F");
+			exit_error("Duplicate F");
 		all->f = parse_color(line + 2);
 	}
 	else if (line[0] == 'C')
 	{
 		if (all->c)
+			exit_error("Duplicate C");
 			exit_error("Duplicate C");
 		all->c = parse_color(line + 2);
 	}
@@ -84,43 +58,38 @@ void	first_init_map(t_all **all, char *line)
 	(*all)->map_data[1] = NULL;
 }
 
-void	tab_to_space(char *str)
+void	add_map_line(t_all **all, char *cleaned_line)
 {
-	if (!str)
-		return ;
-	while (*str)
+	char	**new_map;
+	int		i;
+
+	i = 0;
+	while ((*all)->map_data[i])
+		i++;
+	new_map = ft_calloc(i + 2, sizeof(char *));
+	if (!new_map)
+		exit_error("Malloc failed");
+	i = 0;
+	while ((*all)->map_data[i])
 	{
-		if (*str == '\t')
-			*str = ' ';
-		str++;
+		new_map[i] = ft_strdup((*all)->map_data[i]);
+		i++;
 	}
+	new_map[i] = ft_strdup(cleaned_line);
+	new_map[i + 1] = NULL;
+	free_tab((*all)->map_data);
+	(*all)->map_data = new_map;
 }
 
 void	store_map(t_all **all, char *line)
 {
 	char	*cleaned_line;
-	char	**new_map;
-	int		i;
 
 	cleaned_line = ft_strtrim(line, "\n");
-	tab_to_space(cleaned_line);
+	free(line);
 	if (!(*all)->map_data)
 		first_init_map(all, cleaned_line);
 	else
-	{
-		i = 0;
-		while ((*all)->map_data[i])
-			i++;
-		new_map = ft_calloc(i + 2, sizeof(char *));
-		i = 0;
-		while ((*all)->map_data[i])
-		{
-			new_map[i] = ft_strdup((*all)->map_data[i]);
-			i++;
-		}
-		new_map[i] = ft_strdup(cleaned_line);
-		new_map[i + 1] = NULL;
-		free_tab((*all)->map_data);
-		(*all)->map_data = new_map;
-	}
+		add_map_line(all, cleaned_line);
+	free(cleaned_line);
 }

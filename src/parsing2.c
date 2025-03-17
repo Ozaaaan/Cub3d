@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:14:49 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/06 16:13:46 by ozdemir          ###   ########.fr       */
+/*   Updated: 2025/03/17 12:04:45 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,25 @@ void	store_texture(t_all *all, char *line)
 	if (ft_strncmp(line, "NO ", 3) == 0)
 	{
 		if (all->no)
-			exit_error_free(line, "Duplicate NO");
+			exit_error("Duplicate NO");
 		all->no = ft_strdup(line + 3);
 	}
 	else if (ft_strncmp(line, "SO ", 3) == 0)
 	{
 		if (all->so)
-			exit_error_free(line, "Duplicate SO");
+			exit_error("Duplicate SO");
 		all->so = ft_strdup(line + 3);
 	}
 	else if (ft_strncmp(line, "WE ", 3) == 0)
 	{
 		if (all->we)
-			exit_error_free(line, "Duplicate WE");
+			exit_error("Duplicate WE");
 		all->we = ft_strdup(line + 3);
 	}
 	else if (ft_strncmp(line, "EA ", 3) == 0)
 	{
 		if (all->ea)
-			exit_error_free(line, "Duplicate EA");
+			exit_error("Duplicate EA");
 		all->ea = ft_strdup(line + 3);
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 14:09:06 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/12 12:31:16 by ozdemir          ###   ########.fr       */
+/*   Updated: 2025/03/17 11:46:56 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ int	main(int ac, char **av)
 	t_all	*all;
 
 	parsing(&all, ac, av);
-	all->mlx = mlx_init(WIDTH, HEIGHT, "GAME", 1);
+/* 	all->mlx = mlx_init(WIDTH, HEIGHT, "GAME", 1);
 	mlx_loop_hook(all->mlx, esc_key, all);
-	mlx_loop(all->mlx);
+	mlx_loop(all->mlx); */
 	free_all(all);
 	return (0);
 }

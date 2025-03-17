@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 14:20:20 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/11 13:28:53 by ozdemir          ###   ########.fr       */
+/*   Updated: 2025/03/17 11:49:05 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void	check_config(t_all *all);
 void	count_player(t_all *all);
 void	print_map_data(t_all *all);
 int	is_player(char c);
-int	is_invalid_space(char **map, int i, int j, int height);
 int	ft_isspace(char c);
 int	char_allowed(char c);
 int	check_valid_chars(t_all *all);

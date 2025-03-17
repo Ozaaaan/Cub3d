@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map2.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 13:52:01 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/11 13:29:39 by ozdemir          ###   ########.fr       */
+/*   Updated: 2025/03/17 12:21:21 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int	char_allowed(char c)
 {
-	return (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E' || c == 'W' || c == ' ');
+	return (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E' || c == 'W'
+		|| c == ' ' || c == '\t');
 }
 
 int	check_valid_chars(t_all *all)
@@ -35,28 +36,29 @@ int	check_valid_chars(t_all *all)
 	return (0);
 }
 
-int is_surrounded_by_walls(char **map, int i, int j)
+int	is_surrounded_by_walls(char **map, int i, int j)
 {
-    int height;
-    int len;
+	int	height;
+	int	len;
 
-    height = 0;
-    while (map[height])
-        height++;
-    len = ft_strlenn(map[i]);
-    if (i == 0 || j == 0 || i == height - 1 || j == len - 1)
-        return (0);
-    if (j == 0 && map[i][j] == ' ')
-        return (0);
-    if (i > 0 && j < ft_strlenn(map[i - 1]) && !char_allowed(map[i - 1][j]))
-        return (0);
-    if (i < height - 1 && j < ft_strlenn(map[i + 1]) && !char_allowed(map[i + 1][j]))
-        return (0);
-    if (j > 0 && !char_allowed(map[i][j - 1]))
-        return (0);
-    if (j < len - 1 && !char_allowed(map[i][j + 1]))
-        return (0);
-    return (1);
+	height = 0;
+	while (map[height])
+		height++;
+	len = ft_strlenn(map[i]);
+	if (i == 0 || j == 0 || i == height - 1 || j == len - 1)
+		return (0);
+	if (j == 0 && map[i][j] == ' ')
+		return (0);
+	if (i > 0 && j < ft_strlenn(map[i - 1]) && !char_allowed(map[i - 1][j]))
+		return (0);
+	if (i < height - 1 && j < ft_strlenn(map[i + 1]) && !char_allowed(map[i
+				+ 1][j]))
+		return (0);
+	if (j > 0 && !char_allowed(map[i][j - 1]))
+		return (0);
+	if (j < len - 1 && !char_allowed(map[i][j + 1]))
+		return (0);
+	return (1);
 }
 
 void	replace_inner_spaces(t_all *all)
@@ -70,7 +72,8 @@ void	replace_inner_spaces(t_all *all)
 		j = 0;
 		while (all->map_data[i][j])
 		{
-			if (all->map_data[i][j] == ' '  && is_surrounded_by_walls(all->map_data, i, j))
+			if (all->map_data[i][j] == ' '
+				&& is_surrounded_by_walls(all->map_data, i, j))
 				all->map_data[i][j] = '0';
 			j++;
 		}
@@ -80,31 +83,33 @@ void	replace_inner_spaces(t_all *all)
 
 void	replace_zero(t_all *all)
 {
-	int i;
-    	int j;
-    	int height;
-    	int len;
-    
-    	height = 0;
-    	while (all->map_data[height])
-        	height++;
-   	i = 0;
-    	while (all->map_data[i])
-    	{
-        	j = 0;
-        	while (all->map_data[i][j])
-        	{
-            		if (all->map_data[i][j] == '0')
-            		{
-                		len = ft_strlenn(all->map_data[i]);
-                		if ((j > 0 && all->map_data[i][j - 1] == ' ') ||
-                    		(j < len - 1 && all->map_data[i][j + 1] == ' ') ||
-                    		(i > 0 && j < ft_strlenn(all->map_data[i - 1]) && all->map_data[i - 1][j] == ' ') ||
-                    		(i < height - 1 && j < ft_strlenn(all->map_data[i + 1]) && all->map_data[i + 1][j] == ' '))
-                    			all->map_data[i][j] = ' ';
-            		}
-            		j++;
-        	}
-        	i++;
-    	}
+	int	i;
+	int	j;
+	int	height;
+	int	len;
+
+	height = 0;
+	while (all->map_data[height])
+		height++;
+	i = 0;
+	while (all->map_data[i])
+	{
+		j = 0;
+		while (all->map_data[i][j])
+		{
+			if (all->map_data[i][j] == '0')
+			{
+				len = ft_strlenn(all->map_data[i]);
+				if ((j > 0 && all->map_data[i][j - 1] == ' ') || (j < len - 1
+						&& all->map_data[i][j + 1] == ' ') || (i > 0
+						&& j < ft_strlenn(all->map_data[i - 1])
+						&& all->map_data[i - 1][j] == ' ') || (i < height - 1
+						&& j < ft_strlenn(all->map_data[i + 1])
+						&& all->map_data[i + 1][j] == ' '))
+					all->map_data[i][j] = ' ';
+			}
+			j++;
+		}
+		i++;
+	}
 }

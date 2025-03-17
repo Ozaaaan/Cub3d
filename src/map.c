@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:20:22 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/17 14:08:02 by ozdemir          ###   ########.fr       */
+/*   Updated: 2025/03/17 15:52:17 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,10 @@ int	is_player(char c)
 	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }
 
-int	is_invalid_position(char **map, int i, int j)
+int	 is_invalid_position(char **map, int i, int j)
 {
 	int	height;
 	int	len;
-	int	len_above;
-	int	len_below;
 
 	height = 0;
 	while (map[height])
@@ -43,12 +41,14 @@ int	is_invalid_position(char **map, int i, int j)
 	len = ft_strlenn(map[i]);
 	if (i == 0 || i == height - 1 || j == 0 || j == len - 1)
 		return (1);
-	len_above = ft_strlenn(map[i - 1]);
-	len_below = ft_strlenn(map[i + 1]);
-	if (map[i][j - 1] == ' ' || map[i][j + 1] == ' ')
-		return (1);
-	if ((j < len_above && map[i - 1][j] == ' ') || (j < len_below && map[i
-			+ 1][j] == ' '))
+	if ((map[i][j - 1] && (j > 0 && map[i][j - 1] == ' ')) 
+		|| (map[i][j + 1] && (j < len - 1 && map[i][j + 1] == ' '))
+		|| !map[i - 1][j] || !map[i + 1][j]
+		|| !map[i - 1][j + 1] || !map[i + 1][j - 1]
+		|| !map[i - 1][j - 1] || !map[i + 1][j + 1]
+		|| map[i - 1][j] == ' ' || map[i + 1][j] == ' ' 
+		|| map[i - 1][j + 1] == ' ' || map[i + 1][j - 1] == ' '
+		|| map[i - 1][j - 1] == ' ' || map[i + 1][j + 1] == ' ')
 		return (1);
 	return (0);
 }
@@ -97,5 +97,5 @@ void	count_player(t_all *all)
 		i++;
 	}
 	if (count != 1)
-		exit_error("Map must contain exactly one player starting position");
+		exit_error(all, "Map must contain exactly one player starting position");
 }

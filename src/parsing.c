@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 12:20:55 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/17 15:00:21 by ozdemir          ###   ########.fr       */
+/*   Updated: 2025/03/17 15:50:02 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	handle_line(t_all **all, char *line, int *map_started)
+void	handle_line(t_all *all, char *line, int *map_started)
 {
 	char	*copy;
 
@@ -37,7 +37,7 @@ void	handle_line(t_all **all, char *line, int *map_started)
 		free(line);
 }
 
-void	parse_map(t_all **all, int fd)
+void	parse_map(t_all *all, int fd)
 {
 	char	*line;
 	int		map_started;
@@ -51,35 +51,35 @@ void	parse_map(t_all **all, int fd)
 		handle_line(all, line, &map_started);
 	}
 	if (!map_started)
-		exit_error("No correct map found");
+		exit_error(all, "No correct map found");
 }
 
-void	parsing(t_all **all, int ac, char **av)
+void	parsing(t_all *all, int ac, char **av)
 {
 	int	fd;
 
-	check_args(ac, av);
+	check_args(ac, av, all);
 	init_all(all);
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
-		exit_error("Error opening file");
+		exit_error(all, "Error opening file");
 	parse_map(all, fd);
 	close(fd);
-	check_config(*all);
-	if (check_valid_chars(*all))
-		exit_error("Invalid char in map");
-	print_map_data(*all);
-	if (wall_checker(*all))
-		exit_error("Map is not closed");
-	count_player(*all);
+	check_config(all);
+	if (check_valid_chars(all))
+		exit_error(all, "Invalid char in map");
+	print_map_data(all);
+	if (wall_checker(all))
+		exit_error(all, "Map is not closed");
+	count_player(all);
 }
 
-void	check_args(int ac, char **av)
+void	check_args(int ac, char **av, t_all *all)
 {
 	if (ac != 2)
-		exit_error("Wrong number of arguments");
+		exit_error(all, "Wrong number of arguments");
 	if (map_is_cub(av[1]))
-		exit_error("Map is not .cub");
+		exit_error(all, "Map is not .cub");
 }
 
 int	map_is_cub(char *filename)

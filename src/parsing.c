@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 12:20:55 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/12 12:25:36 by ozdemir          ###   ########.fr       */
+/*   Updated: 2025/03/17 13:52:22 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@ void	parsing(t_all **all, int ac, char **av)
 	check_config(*all);
 	if (check_valid_chars(*all))
 		exit_error("Invalid char in map");
-	replace_inner_spaces(*all);
-	replace_zero(*all);
 	print_map_data(*all);
 	if (wall_checker(*all))
 		exit_error("Map is not closed");

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+         #
+#    By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/26 13:28:06 by ozdemir           #+#    #+#              #
-#    Updated: 2025/03/18 11:15:41 by cle-berr         ###   ########.fr        #
+#    Updated: 2025/03/18 16:27:37 by ozdemir          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,8 +29,10 @@ SRC = 	main.c \
 	parsing/map.c \
 	parsing/map2.c \
 	executing/player.c \
-	executing/draw.c
-	
+	executing/draw.c \
+	executing/raycasting.c \
+	executing/movement.c \
+	executing/movement2.c
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC))
 
@@ -40,7 +42,7 @@ LIBFT_DIR = inc/Libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
 MLX = inc/libmlx42.a
-LIBS = $(MLX) -ldl -lglfw -pthread -L$(LIBFT_DIR) -lft
+LIBS = $(MLX) -ldl -lglfw -pthread -L$(LIBFT_DIR) -lft -lm
 
 RM = rm -f
 

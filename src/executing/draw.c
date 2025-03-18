@@ -6,7 +6,7 @@
 /*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 10:00:00 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/18 11:06:25 by ozdemir          ###   ########.fr       */
+/*   Updated: 2025/03/18 16:24:15 by ozdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,6 @@ void	render(void *param)
 
 	all = (t_all *)param;
 	draw_background(all);
+	cast_rays(all);
+	handle_movement(all);
 }

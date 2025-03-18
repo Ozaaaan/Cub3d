@@ -6,7 +6,7 @@
 /*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 12:20:55 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/18 11:16:49 by cle-berr         ###   ########.fr       */
+/*   Updated: 2025/03/18 17:17:57 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,12 @@ void	parsing(t_all *all, int ac, char **av)
 {
 	int	fd;
 
-	check_args(ac, av, all);
+	if (!check_args(ac, av))
+		exit(EXIT_FAILURE);
 	init_all(all);
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
-		exit_error(all, "Error opening file");
+		(printf("Error\nError opening file\n"), exit(EXIT_FAILURE));
 	parse_map(all, fd);
 	close(fd);
 	check_config(all);
@@ -73,12 +74,13 @@ void	parsing(t_all *all, int ac, char **av)
 	count_player(all);
 }
 
-void	check_args(int ac, char **av, t_all *all)
+int	check_args(int ac, char **av)
 {
 	if (ac != 2)
-		exit_error(all, "Wrong number of arguments");
+		return(printf("Error\nWrong number of arguments\n"), 0);
 	if (map_is_cub(av[1]))
-		exit_error(all, "Map is not .cub");
+		return(printf("Error\nMap is not .cub\n"), 0);
+	return (1);
 }
 
 int	map_is_cub(char *filename)

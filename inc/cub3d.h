@@ -6,7 +6,7 @@
 /*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 14:20:20 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/18 16:46:29 by ozdemir          ###   ########.fr       */
+/*   Updated: 2025/03/18 17:12:59 by ozdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void			exit_error(t_all *all, char *str);
 void			exit_error_free(char *line, char *str);
 void			free_tab(char **tab);
 void			free_all(t_all *all);
-void			check_args(int ac, char **av, t_all *all);
+int			check_args(int ac, char **av);
 void			parsing(t_all *all, int ac, char **av);
 int				is_texture(char *line);
 int				is_allowed_char(char *line);

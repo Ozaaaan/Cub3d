@@ -6,7 +6,7 @@
 /*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 14:43:59 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/17 15:52:10 by cle-berr         ###   ########.fr       */
+/*   Updated: 2025/03/18 10:14:32 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,10 @@ void	store_texture_we(t_all *all, char *line)
 
 void	store_texture_ea(t_all *all, char *line)
 {
-	char *trimmed_path;
+	char	*trimmed_path;
 
 	if (all->ea)
 		exit_error(all, "Duplicate EA texture");
-
 	trimmed_path = ft_strtrim(line + 3, " \t\n\r");
 	if (!trimmed_path || is_valid_texture_path(trimmed_path))
 	{

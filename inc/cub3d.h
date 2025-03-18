@@ -6,37 +6,37 @@
 /*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 14:20:20 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/17 15:50:30 by cle-berr         ###   ########.fr       */
+/*   Updated: 2025/03/18 10:21:48 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
-#define CUB3D_H
+# define CUB3D_H
 
-#include "Libft/libft.h"
-#include "MLX42.h"
-#include <fcntl.h>
-#include <math.h>
-#include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
+# include "Libft/libft.h"
+# include "MLX42.h"
+# include <fcntl.h>
+# include <math.h>
+# include <stdbool.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
 
-#define WIDTH 1000
-#define HEIGHT 800
+# define WIDTH 1000
+# define HEIGHT 800
 
 typedef struct s_all
 {
-	char **map;
-	char **map_data;
-	mlx_t *mlx;
-	char *no;
-	char *so;
-	char *ea;
-	char *we;
-	int f;
-	int c;
-} t_all;
+	char	**map;
+	char	**map_data;
+	mlx_t	*mlx;
+	char	*no;
+	char	*so;
+	char	*ea;
+	char	*we;
+	int		f;
+	int		c;
+}		t_all;
 
 int			map_is_cub(char *filename);
 void		exit_error(t_all *all, char *str);
@@ -69,5 +69,6 @@ void		store_texture_we(t_all *all, char *line);
 void		store_texture_no(t_all *all, char *line);
 void		store_texture_so(t_all *all, char *line);
 int			is_valid_texture_path(char *path);
+void		tab_to_space(char *str);
 
 #endif

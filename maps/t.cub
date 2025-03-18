@@ -1,12 +1,9 @@
+C 0,0,255
+F 0,255,0
 NO ./maps/textures/north.png
- C 255,0,0
-EA ./maps/textures/east.png
-		WE ./maps/textures/west.png
-
-
-F 200,200,0
-
 SO ./maps/textures/south.png
+EA ./maps/textures/east.png
+WE ./maps/textures/west.png
 
 
         1111111111111111111111111

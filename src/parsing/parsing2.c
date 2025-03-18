@@ -6,7 +6,7 @@
 /*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:14:49 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/18 10:21:26 by cle-berr         ###   ########.fr       */
+/*   Updated: 2025/03/18 11:01:21 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	parse_color(t_all *all, char *line)
 	free_tab(colors);
 	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
 		exit_error(all, "Color values must be between 0 and 255");
-	return ((r << 16) | (g << 8) | b);
+	return ((r << 24) | (g << 16) | (b << 0) | 0XFF);
 }
 
 void	store_color(t_all *all, char *line)

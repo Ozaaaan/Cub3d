@@ -6,7 +6,7 @@
 /*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 14:18:57 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/18 10:21:37 by cle-berr         ###   ########.fr       */
+/*   Updated: 2025/03/18 17:53:29 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,30 @@ void	tab_to_space(char *str)
 			*str = ' ';
 		str++;
 	}
+}
+
+int	strdigit(char **str)
+{
+	int		i;
+	int		j;
+	char	*tmp;
+
+	tmp = ft_strdup(str[2]);
+	free(str[2]);
+	str[2] = ft_strtrim(tmp, "\n");
+	free(tmp);
+	printf("{%s}\n", str[2]);
+	i = 0;
+	j = 0;
+	while(i != 3)
+	{
+		if (!str[i])
+			return (0);
+		j = -1;
+		while(str[i][++j])
+			if(!ft_isdigit(str[i][j]))
+				return (0);
+		i++;
+	}
+	return (1);
 }

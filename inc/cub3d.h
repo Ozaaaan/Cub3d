@@ -6,7 +6,7 @@
 /*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 14:20:20 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/18 17:10:07 by cle-berr         ###   ########.fr       */
+/*   Updated: 2025/03/18 17:38:00 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ void			create_main_image(t_all *all);
 void			render(void *param);
 void			init_player(t_all *all);
 void			tab_to_space(char *str);
+int				strdigit(char **str);
 
 void			cast_rays(t_all *all);
 void			init_ray(t_all *all, int x, t_ray *ray);

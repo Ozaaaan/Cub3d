@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 12:20:55 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/17 15:50:02 by cle-berr         ###   ########.fr       */
+/*   Updated: 2025/03/17 18:05:43 by ozdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void	parsing(t_all *all, int ac, char **av)
 	check_config(all);
 	if (check_valid_chars(all))
 		exit_error(all, "Invalid char in map");
-	print_map_data(all);
 	if (wall_checker(all))
 		exit_error(all, "Map is not closed");
 	count_player(all);

@@ -6,7 +6,7 @@
 /*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 14:09:06 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/17 16:10:30 by ozdemir          ###   ########.fr       */
+/*   Updated: 2025/03/18 11:03:22 by ozdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,13 @@ int	main(int ac, char **av)
 	t_all	all;
 
 	parsing(&all, ac, av);
-	/* 	all->mlx = mlx_init(WIDTH, HEIGHT, "GAME", 1);
-		mlx_loop_hook(all->mlx, esc_key, all);
-		mlx_loop(all->mlx); */
+	print_map_data(&all);
+	all.mlx = mlx_init(WIDTH, HEIGHT, "GAME", 1);
+	init_player(&all);
+	create_main_image(&all);
+	mlx_loop_hook(all.mlx, render, &all);
+	mlx_loop_hook(all.mlx, esc_key, &all);
+	mlx_loop(all.mlx);
 	free_all(&all);
 	return (0);
 }

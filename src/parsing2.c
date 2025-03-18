@@ -6,29 +6,31 @@
 /*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:14:49 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/17 16:10:35 by ozdemir          ###   ########.fr       */
+/*   Updated: 2025/03/18 11:03:57 by ozdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	parse_color(t_all *all, char *line)
+uint32_t	parse_color(t_all *all, char *line)
 {
-	char	**colors;
-	int		r;
-	int		g;
-	int		b;
+	char		**colors;
+	int			r;
+	int			g;
+	int			b;
+	uint32_t	color;
 
 	colors = ft_split(line, ',');
 	if (!colors || !colors[0] || !colors[1] || !colors[2])
 		exit_error(all, "Invalid color format");
-	r = ft_atoi(colors[0]);
-	g = ft_atoi(colors[1]);
-	b = ft_atoi(colors[2]);
+	r = (uint8_t)ft_atoi(colors[0]);
+	g = (uint8_t)ft_atoi(colors[1]);
+	b = (uint8_t)ft_atoi(colors[2]);
 	free_tab(colors);
 	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
 		exit_error(all, "Color values must be between 0 and 255");
-	return ((r << 16) | (g << 8) | b);
+	color = (r << 24) | (g << 16) | (b << 8) | 0xFF;
+	return (color);
 }
 
 void	store_color(t_all *all, char *line)
@@ -77,18 +79,6 @@ void	add_map_line(t_all *all, char *cleaned_line)
 	new_map[i + 1] = NULL;
 	free_tab(all->map_data);
 	all->map_data = new_map;
-}
-
-void	tab_to_space(char *str)
-{
-	if (!str)
-		return ;
-	while (*str)
-	{
-		if (*str == '\t')
-			*str = ' ';
-		str++;
-	}
 }
 
 void	store_map(t_all *all, char *line)

@@ -6,7 +6,7 @@
 #    By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/26 13:28:06 by ozdemir           #+#    #+#              #
-#    Updated: 2025/03/17 14:47:03 by ozdemir          ###   ########.fr        #
+#    Updated: 2025/03/17 17:28:56 by ozdemir          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,9 @@ SRC = 	main.c \
 	parsing4.c \
 	verif.c \
 	map.c \
-	map2.c 
+	map2.c \
+	player.c \
+	draw.c
 	
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC))

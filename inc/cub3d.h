@@ -6,7 +6,7 @@
 /*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 14:20:20 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/18 17:12:59 by ozdemir          ###   ########.fr       */
+/*   Updated: 2025/03/18 17:55:25 by ozdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,11 @@ typedef struct s_all
 }				t_all;
 
 int				map_is_cub(char *filename);
-void			exit_error(t_all *all, char *str);
+void			exit_error(char *str);
 void			exit_error_free(char *line, char *str);
 void			free_tab(char **tab);
 void			free_all(t_all *all);
-int			check_args(int ac, char **av);
+int				check_args(int ac, char **av);
 void			parsing(t_all *all, int ac, char **av);
 int				is_texture(char *line);
 int				is_allowed_char(char *line);
@@ -103,6 +103,7 @@ void			create_main_image(t_all *all);
 void			render(void *param);
 void			init_player(t_all *all);
 void			tab_to_space(char *str);
+void			exit_error_free_all(t_all *all, char *str);
 
 void			cast_rays(t_all *all);
 void			init_ray(t_all *all, int x, t_ray *ray);

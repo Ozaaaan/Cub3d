@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:20:22 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/18 10:19:23 by cle-berr         ###   ########.fr       */
+/*   Updated: 2025/03/18 17:41:46 by ozdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,5 @@ void	count_player(t_all *all)
 		i++;
 	}
 	if (count != 1)
-		exit_error(all, "Map must contain exactly one player starting position"
-			);
+		exit_error("Map must contain exactly one player starting position");
 }

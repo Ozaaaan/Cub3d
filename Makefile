@@ -6,7 +6,7 @@
 #    By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/26 13:28:06 by ozdemir           #+#    #+#              #
-#    Updated: 2025/03/17 17:28:56 by ozdemir          ###   ########.fr        #
+#    Updated: 2025/03/18 16:27:37 by ozdemir          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,18 +19,20 @@ SRC_DIR = src
 INC_DIR = inc
 
 SRC = 	main.c \
-	utils.c \
-	utils2.c \
-	parsing.c \
-	parsing2.c \
-	parsing3.c \
-	parsing4.c \
-	verif.c \
-	map.c \
-	map2.c \
-	player.c \
-	draw.c
-	
+	parsing/utils.c \
+	parsing/utils2.c \
+	parsing/parsing.c \
+	parsing/parsing2.c \
+	parsing/parsing3.c \
+	parsing/parsing4.c \
+	parsing/verif.c \
+	parsing/map.c \
+	parsing/map2.c \
+	executing/player.c \
+	executing/draw.c \
+	executing/raycasting.c \
+	executing/movement.c \
+	executing/movement2.c
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC))
 
@@ -40,7 +42,7 @@ LIBFT_DIR = inc/Libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
 MLX = inc/libmlx42.a
-LIBS = $(MLX) -ldl -lglfw -pthread -L$(LIBFT_DIR) -lft
+LIBS = $(MLX) -ldl -lglfw -pthread -L$(LIBFT_DIR) -lft -lm
 
 RM = rm -f
 

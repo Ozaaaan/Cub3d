@@ -6,7 +6,7 @@
 /*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 14:20:20 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/18 11:04:13 by ozdemir          ###   ########.fr       */
+/*   Updated: 2025/03/18 16:46:29 by ozdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,29 @@
 # define WIDTH 1000
 # define HEIGHT 800
 
+typedef struct s_ray
+{
+	double		plane_pos;
+	double		ray_dir_x;
+	double		ray_dir_y;
+	double		side_dist_x;
+	double		side_dist_y;
+	double		delta_dist_x;
+	double		delta_dist_y;
+	double		wall_dist;
+	int			map_x;
+	int			map_y;
+	int			step_x;
+	int			step_y;
+	int			wall_hit;
+	int			wall_hit_dir;
+	int			wall_size;
+	int			draw_start;
+	int			draw_end;
+}				t_ray;
+
 typedef struct s_all
 {
-	char		**map;
 	char		**map_data;
 	mlx_t		*mlx;
 	char		*no;
@@ -83,5 +103,21 @@ void			create_main_image(t_all *all);
 void			render(void *param);
 void			init_player(t_all *all);
 void			tab_to_space(char *str);
+
+void			cast_rays(t_all *all);
+void			init_ray(t_all *all, int x, t_ray *ray);
+void			init_ray_direction(t_all *all, t_ray *ray);
+void			find_wall(t_all *all, t_ray *ray);
+void			get_wall_size(t_all *all, t_ray *ray);
+void			draw_wall(t_all *all, int x, t_ray *ray);
+void			cast_single_ray(t_all *all, int x);
+void			handle_movement(t_all *all);
+void			move_forward(t_all *all, double move_speed);
+void			move_backward(t_all *all, double move_speed);
+void			move_left(t_all *all, double move_speed);
+void			move_right(t_all *all, double move_speed);
+int				is_wall(t_all *all, double x, double y);
+void			rotate_left(t_all *all, double rot_speed);
+void			rotate_left(t_all *all, double rot_speed);
 
 #endif

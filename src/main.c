@@ -6,7 +6,7 @@
 /*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 14:09:06 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/18 11:03:22 by ozdemir          ###   ########.fr       */
+/*   Updated: 2025/03/18 16:46:51 by ozdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	init_all(t_all *all)
 {
-	all->map = NULL;
 	all->map_data = NULL;
 	all->f = 0;
 	all->c = 0;

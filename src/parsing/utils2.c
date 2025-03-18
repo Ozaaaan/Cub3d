@@ -1,37 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map2.c                                             :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/06 13:52:01 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/17 15:24:01 by cle-berr         ###   ########.fr       */
+/*   Created: 2025/03/04 14:11:56 by ozdemir           #+#    #+#             */
+/*   Updated: 2025/03/18 10:13:17 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	char_allowed(char c)
+void	exit_error(t_all *all, char *str)
 {
-	return (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E' || c == 'W'
-		|| c == ' ' || c == '\t');
+	printf("Error\n%s\n", str);
+	free_all(all);
+	exit(EXIT_FAILURE);
 }
 
-int	check_valid_chars(t_all *all)
+void	exit_error_free(char *line, char *str)
 {
-	int	i;
-	int	j;
-
-	i = -1;
-	while (all->map_data[++i])
-	{
-		j = -1;
-		while (all->map_data[i][++j])
-		{
-			if (!char_allowed(all->map_data[i][j]))
-				return (1);
-		}
-	}
-	return (0);
+	free(line);
+	(void)str;
 }

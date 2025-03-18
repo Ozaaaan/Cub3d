@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+         #
+#    By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/26 13:28:06 by ozdemir           #+#    #+#              #
-#    Updated: 2025/03/17 14:47:03 by ozdemir          ###   ########.fr        #
+#    Updated: 2025/03/18 10:58:45 by cle-berr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,15 +19,15 @@ SRC_DIR = src
 INC_DIR = inc
 
 SRC = 	main.c \
-	utils.c \
-	utils2.c \
-	parsing.c \
-	parsing2.c \
-	parsing3.c \
-	parsing4.c \
-	verif.c \
-	map.c \
-	map2.c 
+	parsing/utils.c \
+	parsing/utils2.c \
+	parsing/parsing.c \
+	parsing/parsing2.c \
+	parsing/parsing3.c \
+	parsing/parsing4.c \
+	parsing/verif.c \
+	parsing/map.c \
+	parsing/map2.c 
 	
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC))

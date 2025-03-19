@@ -6,13 +6,22 @@
 /*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 14:20:20 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/19 13:07:28 by cle-berr         ###   ########.fr       */
+/*   Updated: 2025/03/19 14:19:31 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
+# define CUB3D_H
 
+# include "Libft/libft.h"
+# include "MLX42.h"
+# include <fcntl.h>
+# include <math.h>
+# include <stdbool.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
 # include "Libft/libft.h"
 # include "MLX42.h"
 # include <fcntl.h>

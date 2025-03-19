@@ -6,7 +6,7 @@
 /*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 14:20:20 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/19 10:37:49 by cle-berr         ###   ########.fr       */
+/*   Updated: 2025/03/19 11:29:28 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ typedef struct s_all
 }				t_all;
 
 int				map_is_cub(char *filename);
-void			exit_error(t_all *all, char *str);
+void			exit_error(char *str);
 void			exit_error_free(char *line, char *str);
 void			free_tab(char **tab);
 void			free_all(t_all *all);
@@ -103,6 +103,7 @@ void			create_main_image(t_all *all);
 void			render(void *param);
 void			init_player(t_all *all);
 void			tab_to_space(char *str);
+void			exit_error_free_all(t_all *all, char *str);
 int				strdigit(char **str);
 
 void			cast_rays(t_all *all);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 12:20:55 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/18 17:17:57 by cle-berr         ###   ########.fr       */
+/*   Updated: 2025/03/18 17:43:59 by ozdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	parse_map(t_all *all, int fd)
 		handle_line(all, line, &map_started);
 	}
 	if (!map_started)
-		exit_error(all, "No correct map found");
+		exit_error("Incorrect map");
 }
 
 void	parsing(t_all *all, int ac, char **av)
@@ -63,24 +63,24 @@ void	parsing(t_all *all, int ac, char **av)
 	init_all(all);
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
-		(printf("Error\nError opening file\n"), exit(EXIT_FAILURE));
+		exit_error("Error opening file");
 	parse_map(all, fd);
 	close(fd);
 	check_config(all);
 	if (check_valid_chars(all))
-		exit_error(all, "Invalid char in map");
+		exit_error("Invalid char in map");
 	if (wall_checker(all))
-		exit_error(all, "Map is not closed");
+		exit_error("Map is not closed");
 	count_player(all);
 }
 
 int	check_args(int ac, char **av)
 {
 	if (ac != 2)
-		return(printf("Error\nWrong number of arguments\n"), 0);
+		exit_error("Wrong number of arguments");
 	if (map_is_cub(av[1]))
-		return(printf("Error\nMap is not .cub\n"), 0);
-	return (1);
+		exit_error("Map is not .cub");
+	return(1);
 }
 
 int	map_is_cub(char *filename)

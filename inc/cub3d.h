@@ -6,7 +6,7 @@
 /*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 14:20:20 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/19 14:10:25 by ozdemir          ###   ########.fr       */
+/*   Updated: 2025/03/19 14:46:14 by ozdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ void				init_player(t_all *all);
 void				tab_to_space(char *str);
 void				exit_error_free_all(t_all *all, char *str);
 int					strdigit(char **str);
+int					inrange(char *str);
 
 void				cast_rays(t_all *all);
 void				init_ray(t_all *all, int x, t_ray *ray);

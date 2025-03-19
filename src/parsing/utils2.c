@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 14:11:56 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/19 13:44:30 by cle-berr         ###   ########.fr       */
+/*   Updated: 2025/03/19 14:45:58 by ozdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,14 @@ void	exit_error_free(char *line, char *str)
 	free(line);
 	printf("Error\n%s\n", str);
 	exit(EXIT_FAILURE);
+}
+
+int	inrange(char *str)
+{
+	int	num;
+
+	num = ft_atoi(str);
+	if (num < 0 || num > 255)
+		return (0);
+	return (1);
 }

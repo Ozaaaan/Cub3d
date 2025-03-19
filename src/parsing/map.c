@@ -6,24 +6,24 @@
 /*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:20:22 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/19 13:44:25 by cle-berr         ###   ########.fr       */
+/*   Updated: 2025/03/19 16:02:02 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	print_map_data(t_all *all)
-{
-	int	i;
+// void	print_map_data(t_all *all)
+// {
+// 	int	i;
 
-	i = 0;
-	printf("Contenu de map_data :\n");
-	while (all->map_data[i])
-	{
-		printf("%s\n", all->map_data[i]);
-		i++;
-	}
-}
+// 	i = 0;
+// 	printf("Contenu de map_data :\n");
+// 	while (all->map_data[i])
+// 	{
+// 		printf("%s\n", all->map_data[i]);
+// 		i++;
+// 	}
+// }
 
 int	is_player(char c)
 {
@@ -97,5 +97,6 @@ void	count_player(t_all *all)
 		i++;
 	}
 	if (count != 1)
-		exit_error("Map must contain exactly one player starting position");
+		exit_error_free_all(all, "Map must contain exactly one player starting \
+position");
 }

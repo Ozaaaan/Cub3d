@@ -6,7 +6,7 @@
 /*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 12:20:55 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/19 13:44:17 by cle-berr         ###   ########.fr       */
+/*   Updated: 2025/03/19 14:31:51 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	parsing(t_all *all, int ac, char **av)
 		exit_error("Error opening file");
 	parse_map(all, all->fd);
 	if (check_valid_chars(all))
-		exit_error("Invalid char in map");
+		exit_error_free_all(all, "Invalid char in map");
 	if (wall_checker(all))
 		exit_error_free_all(all, "Map is not closed");
 	count_player(all);

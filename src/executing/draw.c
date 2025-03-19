@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 10:00:00 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/19 14:12:45 by ozdemir          ###   ########.fr       */
+/*   Updated: 2025/03/19 14:30:08 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	draw_column(t_all *all, int x, t_ray *ray, int tex_x)
 	int				tex_y;
 	double			step;
 	double			tex_pos;
-	uint32_t		color;
 	mlx_texture_t	*texture;
 
 	texture = select_texture(all, ray);
@@ -71,8 +70,8 @@ void	draw_column(t_all *all, int x, t_ray *ray, int tex_x)
 	{
 		tex_y = (int)tex_pos & (texture->height - 1);
 		tex_pos += step;
-		color = get_texture_pixel(texture, tex_x, tex_y);
-		mlx_put_pixel(all->img, x, y, color);
+		all->color = get_texture_pixel(texture, tex_x, tex_y, all);
+		mlx_put_pixel(all->img, x, y, all->color);
 		y++;
 	}
 }

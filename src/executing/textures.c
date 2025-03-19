@@ -3,22 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 14:02:44 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/19 14:13:25 by ozdemir          ###   ########.fr       */
+/*   Updated: 2025/03/19 14:29:08 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-uint32_t	get_texture_pixel(mlx_texture_t *texture, int x, int y)
+uint32_t	get_texture_pixel(mlx_texture_t *texture, int x, int y, t_all *all)
 {
 	uint8_t		*r;
 	uint8_t		*g;
 	uint8_t		*b;
 	uint8_t		*a;
-	uint32_t	color;
 	int			index;
 
 	index = (y * texture->width + x) * 4;
@@ -26,8 +25,8 @@ uint32_t	get_texture_pixel(mlx_texture_t *texture, int x, int y)
 	g = &texture->pixels[index + 1];
 	b = &texture->pixels[index + 2];
 	a = &texture->pixels[index + 3];
-	color = (*r << 24) | (*g << 16) | (*b << 8) | (*a);
-	return (color);
+	all->color = (*r << 24) | (*g << 16) | (*b << 8) | (*a);
+	return (all->color);
 }
 
 mlx_texture_t	*select_texture(t_all *all, t_ray *ray)

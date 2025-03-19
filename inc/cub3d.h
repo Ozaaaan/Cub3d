@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 14:20:20 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/19 14:10:25 by ozdemir          ###   ########.fr       */
+/*   Updated: 2025/03/19 16:04:25 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ typedef struct s_all
 	double			plane_x;
 	double			plane_y;
 	char			orientation;
-
+	uint32_t		color;
 	mlx_image_t		*img;
 }					t_all;
 
@@ -127,6 +127,7 @@ void				rotate_left(t_all *all, double rot_speed);
 void				rotate_left(t_all *all, double rot_speed);
 void				draw_column(t_all *all, int x, t_ray *ray, int tex_x);
 mlx_texture_t		*select_texture(t_all *all, t_ray *ray);
-uint32_t			get_texture_pixel(mlx_texture_t *texture, int x, int y);
+uint32_t			get_texture_pixel(mlx_texture_t *texture, int x, int y,
+						t_all *all);
 
 #endif

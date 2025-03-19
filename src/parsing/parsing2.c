@@ -6,7 +6,7 @@
 /*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:14:49 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/18 17:54:30 by cle-berr         ###   ########.fr       */
+/*   Updated: 2025/03/19 11:07:38 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,11 @@ uint32_t	parse_color(t_all *all, char *line)
 	int			b;
 	uint32_t	color;
 
+	line = ft_strtrim(line, "\n");
 	colors = ft_split(line, ',');
-	if (!colors || !colors[0] || !colors[1] || !colors[2] || !strdigit(colors))
+	if (!colors || !colors[0] || !colors[1] || !colors[2])
+		exit_error(all, "Invalid color format");
+	if (!strdigit(colors))
 		exit_error(all, "Invalid color format");
 	r = (uint8_t)ft_atoi(colors[0]);
 	g = (uint8_t)ft_atoi(colors[1]);

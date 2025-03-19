@@ -6,20 +6,14 @@
 /*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:14:49 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/19 14:18:56 by cle-berr         ###   ########.fr       */
+/*   Updated: 2025/03/19 13:44:14 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 uint32_t	parse_color(t_all *all, char *line)
-uint32_t	parse_color(t_all *all, char *line)
 {
-	char		**colors;
-	int			r;
-	int			g;
-	int			b;
-	uint32_t	color;
 	char		**colors;
 	int			r;
 	int			g;

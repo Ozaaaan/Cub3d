@@ -6,7 +6,7 @@
 /*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 14:43:59 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/19 14:18:43 by cle-berr         ###   ########.fr       */
+/*   Updated: 2025/03/19 13:43:58 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ void	store_texture_we(t_all *all, char *line)
 void	store_texture_ea(t_all *all, char *line)
 {
 	char	*trimmed_path;
-	char	*trimmed_path;
 
 	if (all->ea)
 	{
@@ -125,4 +124,3 @@ void	store_texture_ea(t_all *all, char *line)
 	}
 	all->ea = trimmed_path;
 }
-

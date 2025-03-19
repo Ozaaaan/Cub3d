@@ -3,26 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parsing3.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 14:18:57 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/19 14:18:51 by cle-berr         ###   ########.fr       */
+/*   Updated: 2025/03/19 13:52:37 by ozdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	tab_to_space(char *str)
-{
-	if (!str)
-		return ;
-	while (*str)
-	{
-		if (*str == '\t')
-			*str = ' ';
-		str++;
-	}
-}
 
 void	store_texture(t_all *all, char *line)
 {
@@ -68,19 +56,19 @@ void	tab_to_space(char *str)
 
 int	strdigit(char **str)
 {
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
-	while(str[i])
+	while (str[i])
 	{
 		if (str[i][0] == '\n')
 			return (0);
 		j = 0;
-		while(str[i][j] && str[i][j] != '\n')
+		while (str[i][j] && str[i][j] != '\n')
 		{
-			if(!ft_isdigit(str[i][j]))
+			if (!ft_isdigit(str[i][j]))
 				return (0);
 			j++;
 		}

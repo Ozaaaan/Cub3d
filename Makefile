@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+         #
+#    By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/26 13:28:06 by ozdemir           #+#    #+#              #
-#    Updated: 2025/03/19 14:19:38 by cle-berr         ###   ########.fr        #
+#    Updated: 2025/03/19 14:03:17 by ozdemir          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ SRC = 	main.c \
 	executing/draw.c \
 	executing/raycasting.c \
 	executing/movement.c \
-	executing/movement2.c
+	executing/movement2.c \
+	executing/textures.c
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC))
 

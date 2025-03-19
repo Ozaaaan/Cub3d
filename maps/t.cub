@@ -2,7 +2,7 @@ C 100,170,255
 F 150,150,150
 NO ./maps/textures/north.png
 SO ./maps/textures/south.png
-EA ./maps/textures
+EA ./maps/textures/east.png
 WE ./maps/textures/west.png
 
 

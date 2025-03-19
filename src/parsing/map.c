@@ -5,11 +5,10 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/03/19 14:19:17 by cle-berr         ###   ########.fr       */
+/*   Created: 2025/03/03 15:20:22 by ozdemir           #+#    #+#             */
+/*   Updated: 2025/03/19 13:44:25 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "cub3d.h"
 
@@ -31,7 +30,6 @@ int	is_player(char c)
 	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }
 
-int	is_invalid_position(char **map, int i, int j)
 int	is_invalid_position(char **map, int i, int j)
 {
 	int	height;

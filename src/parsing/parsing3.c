@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing3.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 14:18:57 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/19 11:59:59 by ozdemir          ###   ########.fr       */
+/*   Updated: 2025/03/19 13:44:08 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,27 @@ void	tab_to_space(char *str)
 			*str = ' ';
 		str++;
 	}
+}
+
+int	strdigit(char **str)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	while(str[i])
+	{
+		if (str[i][0] == '\n')
+			return (0);
+		j = 0;
+		while(str[i][j] && str[i][j] != '\n')
+		{
+			if(!ft_isdigit(str[i][j]))
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
 }

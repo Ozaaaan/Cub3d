@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 12:20:55 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/19 12:39:43 by ozdemir          ###   ########.fr       */
+/*   Updated: 2025/03/19 13:44:17 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,16 +57,13 @@ void	parse_map(t_all *all, int fd)
 
 void	parsing(t_all *all, int ac, char **av)
 {
-	int	fd;
-
 	if (!check_args(ac, av))
 		exit(EXIT_FAILURE);
 	init_all(all);
-	fd = open(av[1], O_RDONLY);
-	if (fd == -1)
+	all->fd = open(av[1], O_RDONLY);
+	if (all->fd == -1)
 		exit_error("Error opening file");
-	parse_map(all, fd);
-	close(fd);
+	parse_map(all, all->fd);
 	if (check_valid_chars(all))
 		exit_error("Invalid char in map");
 	if (wall_checker(all))

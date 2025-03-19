@@ -6,7 +6,7 @@
 /*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 14:20:20 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/19 11:29:28 by cle-berr         ###   ########.fr       */
+/*   Updated: 2025/03/19 11:49:29 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,10 @@ typedef struct s_all
 	char		*so;
 	char		*ea;
 	char		*we;
+	mlx_texture_t		*no_tex;
+	mlx_texture_t		*so_tex;
+	mlx_texture_t		*ea_tex;
+	mlx_texture_t		*we_tex;
 	int			f;
 	int			c;
 

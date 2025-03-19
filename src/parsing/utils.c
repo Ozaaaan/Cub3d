@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 15:22:58 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/19 11:13:44 by ozdemir          ###   ########.fr       */
+/*   Updated: 2025/03/19 13:09:01 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ int	count_tab(char **tab)
 
 void	free_all(t_all *all)
 {
-	if (all->mlx)
-		mlx_terminate(all->mlx);
 	if (all->map_data)
 		free_tab(all->map_data);
 	if (all->no)
@@ -68,4 +66,5 @@ void	free_all(t_all *all)
 		free(all->ea);
 	if (all->we)
 		free(all->we);
+	close(all->fd);
 }

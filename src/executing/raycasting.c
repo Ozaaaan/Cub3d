@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 15:00:00 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/19 12:40:00 by ozdemir          ###   ########.fr       */
+/*   Updated: 2025/03/19 12:32:22 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,22 +86,63 @@ void	get_wall_size(t_all *all, t_ray *ray)
 		ray->draw_end = HEIGHT - 1;
 }
 
+uint32_t	get_texture_pixel(mlx_texture_t *texture, int x, int y)
+{
+	uint8_t	*r;
+	uint8_t	*g;
+	uint8_t	*b;
+	uint8_t	*a;
+	uint32_t color;
+
+	int	index = (y * texture->width + x) * 4;
+	r = &texture->pixels[index + 0];
+	g = &texture->pixels[index + 1];
+	b = &texture->pixels[index + 2];
+	a = &texture->pixels[index + 3];
+	color = (*a << 24) | (*b << 16) | (*g << 8) | (*r);
+	return (color);
+}
+
+
 void	draw_wall(t_all *all, int x, t_ray *ray)
 {
 	int			y;
-	uint32_t	wall_color;
+	int			tex_x;
+	int			tex_y;
+	double		step;
+	double		tex_pos;
+	uint32_t	color;
+	mlx_texture_t *texture;
 
 	if (ray->wall_hit_dir == 0)
-		wall_color = 0xFF0000FF;
+		texture = (ray->ray_dir_x < 0) ? all->we_tex : all->ea_tex;
 	else
-		wall_color = 0x880000FF;
+		texture = (ray->ray_dir_y < 0) ? all->no_tex : all->so_tex;
+	double wall_x;
+	if (ray->wall_hit_dir == 0)
+		wall_x = all->pos_y + ray->wall_dist * ray->ray_dir_y;
+	else
+		wall_x = all->pos_x + ray->wall_dist * ray->ray_dir_x;
+	wall_x -= floor(wall_x);
+	tex_x = (int)(wall_x * (double)texture->width);
+	if (ray->wall_hit_dir == 0 && ray->ray_dir_x > 0)
+		tex_x = texture->width - tex_x - 1;
+	if (ray->wall_hit_dir == 1 && ray->ray_dir_y < 0)
+		tex_x = texture->width - tex_x - 1;
+	step = 1.0 * texture->height / ray->wall_size;
+	tex_pos = (ray->draw_start - HEIGHT / 2 + ray->wall_size / 2) * step;
+
 	y = ray->draw_start;
 	while (y <= ray->draw_end)
 	{
-		mlx_put_pixel(all->img, x, y, wall_color);
+		tex_y = (int)tex_pos & (texture->height - 1);
+		tex_pos += step;
+		color = get_texture_pixel(texture, tex_x, tex_y);
+		mlx_put_pixel(all->img, x, y, color);
 		y++;
 	}
 }
+
 
 void	cast_single_ray(t_all *all, int x)
 {

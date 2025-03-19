@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:14:49 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/19 12:39:48 by ozdemir          ###   ########.fr       */
+/*   Updated: 2025/03/19 13:13:35 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ uint32_t	parse_color(t_all *all, char *line)
 	uint32_t	color;
 
 	colors = ft_split(line, ',');
-	if (!colors || !colors[0] || !colors[1] || !colors[2])
+	if (!colors || !colors[0] || !colors[1] || !colors[2] || !strdigit(colors))
 	{
 		free(line - 2);
 		free_tab(colors);
@@ -42,13 +42,19 @@ void	store_color(t_all *all, char *line)
 	if (line[0] == 'F')
 	{
 		if (all->f)
+		{
+			close(all->fd);
 			exit_error_free(line, "Duplicate F");
+		}
 		all->f = parse_color(all, line + 2);
 	}
 	else if (line[0] == 'C')
 	{
 		if (all->c)
+		{
+			close(all->fd);
 			exit_error_free(line, "Duplicate C");
+		}
 		all->c = parse_color(all, line + 2);
 	}
 }

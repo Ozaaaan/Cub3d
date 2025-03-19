@@ -6,7 +6,7 @@
 /*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:14:49 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/19 13:44:14 by cle-berr         ###   ########.fr       */
+/*   Updated: 2025/03/19 15:14:14 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,22 @@ uint32_t	parse_color(t_all *all, char *line)
 		free_tab(colors);
 		exit_error_free_all(all, "Invalid color format");
 	}
-	r = (uint8_t)ft_atoi(colors[0]);
-	g = (uint8_t)ft_atoi(colors[1]);
-	b = (uint8_t)ft_atoi(colors[2]);
+	r = ft_atoi(colors[0]);
+	g = ft_atoi(colors[1]);
+	b = ft_atoi(colors[2]);
 	free_tab(colors);
 	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
-		exit_error("Color values must be between 0 and 255");
+	{
+		free(line - 2);
+		exit_error_free_all(all, "Color values must be between 0 and 255");
+	}
 	color = (r << 24) | (g << 16) | (b << 8) | 0xFF;
 	return (color);
 }
 
 void	store_color(t_all *all, char *line)
 {
-	if (line[0] == 'F')
+	if (line[0] == 'F' && line[1] == ' ')
 	{
 		if (all->f)
 		{
@@ -48,7 +51,7 @@ void	store_color(t_all *all, char *line)
 		}
 		all->f = parse_color(all, line + 2);
 	}
-	else if (line[0] == 'C')
+	else if (line[0] == 'C' && line[1] == ' ')
 	{
 		if (all->c)
 		{

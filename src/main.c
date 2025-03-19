@@ -6,7 +6,7 @@
 /*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 14:09:06 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/19 13:44:36 by cle-berr         ###   ########.fr       */
+/*   Updated: 2025/03/19 15:14:01 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,18 @@ void	init_textures(t_all *all)
 	all->ea_tex = mlx_load_png(all->ea);
 	all->we_tex = mlx_load_png(all->we);
 	if (!all->no_tex || !all->so_tex || !all->ea_tex || !all->we_tex)
-		exit_error_free_all(all, "Erreur chargement textures");
+	{
+		if (all->no_tex)
+			mlx_delete_texture(all->no_tex);
+		if (all->so_tex)
+			mlx_delete_texture(all->so_tex);
+		if (all->ea_tex)
+			mlx_delete_texture(all->ea_tex);
+		if (all->we_tex)
+			mlx_delete_texture(all->we_tex);
+		mlx_terminate(all->mlx);
+		exit_error_free_all(all, "Invalid texture path");
+	}
 }
 
 void	esc_key(void *esc)

@@ -6,7 +6,7 @@
 /*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:20:22 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/19 13:44:25 by cle-berr         ###   ########.fr       */
+/*   Updated: 2025/03/19 15:13:30 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,6 @@ void	count_player(t_all *all)
 		i++;
 	}
 	if (count != 1)
-		exit_error("Map must contain exactly one player starting position");
+		exit_error_free_all(all, "Map must contain exactly one player starting \
+position");
 }

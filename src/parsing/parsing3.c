@@ -6,23 +6,11 @@
 /*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 14:18:57 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/18 11:04:02 by ozdemir          ###   ########.fr       */
+/*   Updated: 2025/03/19 11:59:59 by ozdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	tab_to_space(char *str)
-{
-	if (!str)
-		return ;
-	while (*str)
-	{
-		if (*str == '\t')
-			*str = ' ';
-		str++;
-	}
-}
 
 void	store_texture(t_all *all, char *line)
 {
@@ -49,5 +37,19 @@ void	check_config(t_all *all)
 	printf("no: %s\nso: %s\nea: %s\nwe: %s\nf: %d\nc: %d\n", all->no, all->so,
 		all->ea, all->we, all->f, all->c);
 	if (!all->no || !all->so || !all->ea || !all->we || !all->f || !all->c)
-		exit_error(all, "Missing textures or colors");
+	{
+		exit_error_free_all(all, "Missing textures or colors");
+	}
+}
+
+void	tab_to_space(char *str)
+{
+	if (!str)
+		return ;
+	while (*str)
+	{
+		if (*str == '\t')
+			*str = ' ';
+		str++;
+	}
 }

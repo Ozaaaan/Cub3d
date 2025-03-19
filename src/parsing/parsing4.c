@@ -6,7 +6,7 @@
 /*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 14:43:59 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/18 11:02:58 by ozdemir          ###   ########.fr       */
+/*   Updated: 2025/03/19 12:39:55 by ozdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,15 @@ void	store_texture_no(t_all *all, char *line)
 	char	*trimmed_path;
 
 	if (all->no)
-		exit_error(all, "Duplicate NO texture");
+	{
+		free(line);
+		exit_error_free_all(all, "Duplicate NO texture");
+	}
 	trimmed_path = ft_strtrim(line + 3, " \t\n\r");
 	if (!trimmed_path || is_valid_texture_path(trimmed_path))
 	{
 		free(trimmed_path);
-		exit_error(all, "Invalid NO texture path");
+		exit_error_free(line, "Invalid NO texture path");
 	}
 	all->no = trimmed_path;
 }
@@ -45,12 +48,15 @@ void	store_texture_so(t_all *all, char *line)
 	char	*trimmed_path;
 
 	if (all->so)
-		exit_error(all, "Duplicate SO texture");
+	{
+		free(line);
+		exit_error_free_all(all, "Duplicate SO texture");
+	}
 	trimmed_path = ft_strtrim(line + 3, " \t\n\r");
 	if (!trimmed_path || is_valid_texture_path(trimmed_path))
 	{
 		free(trimmed_path);
-		exit_error(all, "Invalid SO texture path");
+		exit_error_free(line, "Invalid SO texture path");
 	}
 	all->so = trimmed_path;
 }
@@ -60,12 +66,15 @@ void	store_texture_we(t_all *all, char *line)
 	char	*trimmed_path;
 
 	if (all->we)
-		exit_error(all, "Duplicate WE texture");
+	{
+		free(line);
+		exit_error_free_all(all, "Duplicate WE texture");
+	}
 	trimmed_path = ft_strtrim(line + 3, " \t\n\r");
 	if (!trimmed_path || is_valid_texture_path(trimmed_path))
 	{
 		free(trimmed_path);
-		exit_error(all, "Invalid WE texture path");
+		exit_error_free(line, "Invalid WE texture path");
 	}
 	all->we = trimmed_path;
 }
@@ -75,12 +84,15 @@ void	store_texture_ea(t_all *all, char *line)
 	char	*trimmed_path;
 
 	if (all->ea)
-		exit_error(all, "Duplicate EA texture");
+	{
+		free(line);
+		exit_error_free_all(all, "Duplicate EA texture");
+	}
 	trimmed_path = ft_strtrim(line + 3, " \t\n\r");
 	if (!trimmed_path || is_valid_texture_path(trimmed_path))
 	{
 		free(trimmed_path);
-		exit_error(all, "Invalid EA texture path");
+		exit_error_free(line, "Invalid EA texture path");
 	}
 	all->ea = trimmed_path;
 }

@@ -6,7 +6,7 @@
 /*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 10:00:00 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/18 11:06:25 by ozdemir          ###   ########.fr       */
+/*   Updated: 2025/03/18 17:41:52 by ozdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void	create_main_image(t_all *all)
 {
 	all->img = mlx_new_image(all->mlx, WIDTH, HEIGHT);
 	if (!all->img)
-		exit_error(all, "Error creating image");
+		exit_error("Error creating image");
 	if (mlx_image_to_window(all->mlx, all->img, 0, 0) < 0)
-		exit_error(all, "Error image to window");
+		exit_error("Error image to window");
 }
 
 void	draw_background(t_all *all)
@@ -50,4 +50,6 @@ void	render(void *param)
 
 	all = (t_all *)param;
 	draw_background(all);
+	cast_rays(all);
+	handle_movement(all);
 }

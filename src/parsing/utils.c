@@ -6,7 +6,7 @@
 /*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 15:22:58 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/18 16:31:56 by ozdemir          ###   ########.fr       */
+/*   Updated: 2025/03/19 11:13:44 by ozdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,12 @@ void	free_all(t_all *all)
 		mlx_terminate(all->mlx);
 	if (all->map_data)
 		free_tab(all->map_data);
+	if (all->no)
+		free(all->no);
+	if (all->so)
+		free(all->so);
+	if (all->ea)
+		free(all->ea);
+	if (all->we)
+		free(all->we);
 }

@@ -6,7 +6,7 @@
 /*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 12:20:55 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/18 17:43:59 by ozdemir          ###   ########.fr       */
+/*   Updated: 2025/03/19 12:39:43 by ozdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,9 @@ void	parse_map(t_all *all, int fd)
 			break ;
 		handle_line(all, line, &map_started);
 	}
+	check_config(all);
 	if (!map_started)
-		exit_error("Incorrect map");
+		exit_error_free_all(all, "Incorrect map");
 }
 
 void	parsing(t_all *all, int ac, char **av)
@@ -66,11 +67,10 @@ void	parsing(t_all *all, int ac, char **av)
 		exit_error("Error opening file");
 	parse_map(all, fd);
 	close(fd);
-	check_config(all);
 	if (check_valid_chars(all))
 		exit_error("Invalid char in map");
 	if (wall_checker(all))
-		exit_error("Map is not closed");
+		exit_error_free_all(all, "Map is not closed");
 	count_player(all);
 }
 
@@ -80,7 +80,7 @@ int	check_args(int ac, char **av)
 		exit_error("Wrong number of arguments");
 	if (map_is_cub(av[1]))
 		exit_error("Map is not .cub");
-	return(1);
+	return (1);
 }
 
 int	map_is_cub(char *filename)

@@ -6,7 +6,7 @@
 /*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 14:11:56 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/18 17:55:12 by ozdemir          ###   ########.fr       */
+/*   Updated: 2025/03/19 11:42:28 by ozdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ void	exit_error_free_all(t_all *all, char *str)
 void	exit_error_free(char *line, char *str)
 {
 	free(line);
-	(void)str;
+	printf("Error\n%s\n", str);
+	exit(EXIT_FAILURE);
 }

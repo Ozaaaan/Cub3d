@@ -6,7 +6,7 @@
 /*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 14:09:06 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/18 16:46:51 by ozdemir          ###   ########.fr       */
+/*   Updated: 2025/03/19 11:27:34 by ozdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,13 @@ void	init_all(t_all *all)
 	all->so = NULL;
 	all->ea = NULL;
 	all->we = NULL;
+	all->pos_x = 0;
+	all->pos_y = 0;
+	all->dir_x = 0;
+	all->dir_y = 0;
+	all->plane_x = 0;
+	all->plane_y = 0;
+	all->orientation = '\0';
 }
 
 void	esc_key(void *esc)
@@ -36,6 +43,7 @@ int	main(int ac, char **av)
 {
 	t_all	all;
 
+	ft_memset(&all, 0, sizeof(t_all));
 	parsing(&all, ac, av);
 	print_map_data(&all);
 	all.mlx = mlx_init(WIDTH, HEIGHT, "GAME", 1);

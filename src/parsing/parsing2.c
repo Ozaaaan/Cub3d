@@ -6,13 +6,13 @@
 /*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:14:49 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/19 12:43:14 by cle-berr         ###   ########.fr       */
+/*   Updated: 2025/03/19 13:13:35 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-uint32_t	parse_color(char *line)
+uint32_t	parse_color(t_all *all, char *line)
 {
 	char		**colors;
 	int			r;
@@ -20,12 +20,13 @@ uint32_t	parse_color(char *line)
 	int			b;
 	uint32_t	color;
 
-	line = ft_strtrim(line, "\n");
 	colors = ft_split(line, ',');
-	if (!colors || !colors[0] || !colors[1] || !colors[2])
-		exit_error("Invalid color format");
-	if (!strdigit(colors))
-		exit_error("Invalid color format");
+	if (!colors || !colors[0] || !colors[1] || !colors[2] || !strdigit(colors))
+	{
+		free(line - 2);
+		free_tab(colors);
+		exit_error_free_all(all, "Invalid color format");
+	}
 	r = (uint8_t)ft_atoi(colors[0]);
 	g = (uint8_t)ft_atoi(colors[1]);
 	b = (uint8_t)ft_atoi(colors[2]);
@@ -41,14 +42,20 @@ void	store_color(t_all *all, char *line)
 	if (line[0] == 'F')
 	{
 		if (all->f)
-			exit_error("Duplicate F");
-		all->f = parse_color(line + 2);
+		{
+			close(all->fd);
+			exit_error_free(line, "Duplicate F");
+		}
+		all->f = parse_color(all, line + 2);
 	}
 	else if (line[0] == 'C')
 	{
 		if (all->c)
-			exit_error("Duplicate C");
-		all->c = parse_color(line + 2);
+		{
+			close(all->fd);
+			exit_error_free(line, "Duplicate C");
+		}
+		all->c = parse_color(all, line + 2);
 	}
 }
 

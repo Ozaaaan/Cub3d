@@ -6,7 +6,7 @@
 /*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 14:18:57 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/19 11:47:05 by cle-berr         ###   ########.fr       */
+/*   Updated: 2025/03/19 13:01:36 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ void	check_config(t_all *all)
 	printf("no: %s\nso: %s\nea: %s\nwe: %s\nf: %d\nc: %d\n", all->no, all->so,
 		all->ea, all->we, all->f, all->c);
 	if (!all->no || !all->so || !all->ea || !all->we || !all->f || !all->c)
-		exit_error("Missing textures or colors");
+	{
+		exit_error_free_all(all, "Missing textures or colors");
+	}
 }
 
 void	tab_to_space(char *str)
@@ -61,12 +63,15 @@ int	strdigit(char **str)
 	j = 0;
 	while(str[i])
 	{
-		if (!str[i])
+		if (str[i][0] == '\n')
 			return (0);
-		j = -1;
-		while(str[i][++j])
+		j = 0;
+		while(str[i][j] && str[i][j] != '\n')
+		{
 			if(!ft_isdigit(str[i][j]))
 				return (0);
+			j++;
+		}
 		i++;
 	}
 	return (1);

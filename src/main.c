@@ -6,7 +6,7 @@
 /*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 14:09:06 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/19 12:36:50 by cle-berr         ###   ########.fr       */
+/*   Updated: 2025/03/19 13:09:25 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ int	main(int ac, char **av)
 	mlx_delete_texture(all.so_tex);
 	mlx_delete_texture(all.ea_tex);
 	mlx_delete_texture(all.we_tex);
+	if (all.mlx)
+		mlx_terminate(all.mlx);
 	free_all(&all);
 	return (0);
 }

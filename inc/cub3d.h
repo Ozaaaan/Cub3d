@@ -6,7 +6,7 @@
 /*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 14:20:20 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/19 11:49:29 by cle-berr         ###   ########.fr       */
+/*   Updated: 2025/03/19 13:07:28 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,28 +48,28 @@ typedef struct s_ray
 
 typedef struct s_all
 {
-	char		**map_data;
-	mlx_t		*mlx;
-	char		*no;
-	char		*so;
-	char		*ea;
-	char		*we;
+	char				**map_data;
+	mlx_t				*mlx;
+	char				*no;
+	char				*so;
+	char				*ea;
+	char				*we;
 	mlx_texture_t		*no_tex;
 	mlx_texture_t		*so_tex;
 	mlx_texture_t		*ea_tex;
 	mlx_texture_t		*we_tex;
-	int			f;
-	int			c;
+	int					fd;
+	int					f;
+	int					c;
+	double				pos_x;
+	double				pos_y;
+	double				dir_x;
+	double				dir_y;
+	double				plane_x;
+	double				plane_y;
+	char				orientation;
 
-	double		pos_x;
-	double		pos_y;
-	double		dir_x;
-	double		dir_y;
-	double		plane_x;
-	double		plane_y;
-	char		orientation;
-
-	mlx_image_t	*img;
+	mlx_image_t			*img;
 }				t_all;
 
 int				map_is_cub(char *filename);

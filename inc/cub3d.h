@@ -6,7 +6,7 @@
 /*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 14:20:20 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/19 16:04:25 by cle-berr         ###   ########.fr       */
+/*   Updated: 2025/03/24 12:57:46 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,8 @@ void				init_player(t_all *all);
 void				tab_to_space(char *str);
 void				exit_error_free_all(t_all *all, char *str);
 int					strdigit(char **str);
+void				handle_empty_line(int *map_started, int *empty_line,
+						char *line);
 
 void				cast_rays(t_all *all);
 void				init_ray(t_all *all, int x, t_ray *ray);

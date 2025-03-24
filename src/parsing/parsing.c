@@ -6,13 +6,13 @@
 /*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 12:20:55 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/19 14:31:51 by cle-berr         ###   ########.fr       */
+/*   Updated: 2025/03/24 12:56:44 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	handle_line(t_all *all, char *line, int *map_started)
+void	handle_line(t_all *all, char *line, int *map_started, int *empty_line)
 {
 	char	*copy;
 
@@ -20,19 +20,19 @@ void	handle_line(t_all *all, char *line, int *map_started)
 		return ;
 	copy = skip_space(line);
 	if (line[0] == '\0' || line[0] == '\n')
-		free(line);
+		handle_empty_line(map_started, empty_line, line);
 	else if (!(*map_started) && (is_texture(copy) || is_color(copy)))
+		(storing(all, copy), free(line));
+	else if (is_allowed_char(line) == 0)
 	{
-		storing(all, copy);
-		free(line);
-	}
-	else if (is_allowed_char(line))
-	{
+		if (*map_started && *empty_line)
+			(free(line), exit_error_free_all(all, "No empty lines allowed in \
+map"));
 		*map_started = 1;
 		store_map(all, line);
 	}
-	else if (map_started)
-		exit_error_free(line, "Invalid content");
+	else if (*map_started)
+		(free(line), exit_error_free_all(all, "Invalid content"));
 	else
 		free(line);
 }
@@ -41,14 +41,16 @@ void	parse_map(t_all *all, int fd)
 {
 	char	*line;
 	int		map_started;
+	int		empty_line;
 
 	map_started = 0;
+	empty_line = 0;
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		handle_line(all, line, &map_started);
+		handle_line(all, line, &map_started, &empty_line);
 	}
 	check_config(all);
 	if (!map_started)

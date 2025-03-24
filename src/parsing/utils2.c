@@ -6,7 +6,7 @@
 /*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 14:11:56 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/19 15:03:15 by cle-berr         ###   ########.fr       */
+/*   Updated: 2025/03/24 12:56:50 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,11 @@ void	exit_error_free(char *line, char *str)
 	free(line);
 	printf("Error\n%s\n", str);
 	exit(EXIT_FAILURE);
+}
+
+void	handle_empty_line(int *map_started, int *empty_line, char *line)
+{
+	if (*map_started)
+		*empty_line = 1;
+	free(line);
 }

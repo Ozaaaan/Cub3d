@@ -6,7 +6,7 @@
 /*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:07:34 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/19 13:44:33 by cle-berr         ###   ########.fr       */
+/*   Updated: 2025/03/24 12:56:24 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ int	is_allowed_char(char *line)
 	while (line[i])
 	{
 		if (line[i] != '0' && line[i] != '1' && line[i] != 'N' && line[i] != 'S'
-			&& line[i] != 'E' && line[i] != 'W' && line[i] != ' ')
+			&& line[i] != 'E' && line[i] != 'W' && line[i] != ' '
+			&& line[i] != '\n')
 			return (1);
 		i++;
 	}

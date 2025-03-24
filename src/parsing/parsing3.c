@@ -6,30 +6,30 @@
 /*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 14:18:57 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/19 16:05:22 by cle-berr         ###   ########.fr       */
+/*   Updated: 2025/03/24 14:16:18 by cle-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	store_texture(t_all *all, char *line)
+void	store_texture(t_all *all, char *line, char *freel)
 {
 	if (ft_strncmp(line, "NO ", 3) == 0)
-		store_texture_no(all, line);
+		store_texture_no(all, line, freel);
 	else if (ft_strncmp(line, "SO ", 3) == 0)
-		store_texture_so(all, line);
+		store_texture_so(all, line, freel);
 	else if (ft_strncmp(line, "WE ", 3) == 0)
-		store_texture_we(all, line);
+		store_texture_we(all, line, freel);
 	else if (ft_strncmp(line, "EA ", 3) == 0)
-		store_texture_ea(all, line);
+		store_texture_ea(all, line, freel);
 }
 
-void	storing(t_all *all, char *line)
+void	storing(t_all *all, char *line, char *freel)
 {
 	if (is_texture(line))
-		store_texture(all, line);
+		store_texture(all, line, freel);
 	else if (is_color(line))
-		store_color(all, line);
+		store_color(all, line, freel);
 }
 
 void	check_config(t_all *all)

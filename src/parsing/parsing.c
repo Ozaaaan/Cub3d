@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 12:20:55 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/24 12:56:44 by cle-berr         ###   ########.fr       */
+/*   Updated: 2025/03/24 17:40:02 by ozdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	handle_line(t_all *all, char *line, int *map_started, int *empty_line)
 	if (line[0] == '\0' || line[0] == '\n')
 		handle_empty_line(map_started, empty_line, line);
 	else if (!(*map_started) && (is_texture(copy) || is_color(copy)))
-		(storing(all, copy), free(line));
+		(storing(all, copy, line), free(line));
 	else if (is_allowed_char(line) == 0)
 	{
 		if (*map_started && *empty_line)
@@ -31,10 +31,8 @@ map"));
 		*map_started = 1;
 		store_map(all, line);
 	}
-	else if (*map_started)
-		(free(line), exit_error_free_all(all, "Invalid content"));
 	else
-		free(line);
+		(free(line), exit_error_free_all(all, "Invalid content"));
 }
 
 void	parse_map(t_all *all, int fd)

@@ -3,28 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   parsing2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:14:49 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/19 15:14:14 by cle-berr         ###   ########.fr       */
+/*   Updated: 2025/03/24 17:40:09 by ozdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-uint32_t	parse_color(t_all *all, char *line)
+uint32_t	parse_color(t_all *all, char *line, char *freel)
 {
-	char		**colors;
-	int			r;
-	int			g;
-	int			b;
-	uint32_t	color;
+	char	**colors;
+	int		r;
+	int		g;
+	int		b;
 
+	comma_check(all, line, freel);
 	colors = ft_split(line, ',');
 	if (!colors || !colors[0] || !colors[1] || !colors[2] || !strdigit(colors))
 	{
-		free(line - 2);
 		free_tab(colors);
+		free(freel);
 		exit_error_free_all(all, "Invalid color format");
 	}
 	r = ft_atoi(colors[0]);
@@ -33,32 +33,33 @@ uint32_t	parse_color(t_all *all, char *line)
 	free_tab(colors);
 	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
 	{
-		free(line - 2);
+		free(freel);
 		exit_error_free_all(all, "Color values must be between 0 and 255");
 	}
-	color = (r << 24) | (g << 16) | (b << 8) | 0xFF;
-	return (color);
+	return ((r << 24) | (g << 16) | (b << 8) | 0xFF);
 }
 
-void	store_color(t_all *all, char *line)
+void	store_color(t_all *all, char *line, char *freel)
 {
 	if (line[0] == 'F' && line[1] == ' ')
 	{
 		if (all->f)
 		{
+			free(freel);
 			close(all->fd);
-			exit_error_free(line, "Duplicate F");
+			exit_error_free_all(all, "Duplicate F");
 		}
-		all->f = parse_color(all, line + 2);
+		all->f = parse_color(all, line + 2, freel);
 	}
 	else if (line[0] == 'C' && line[1] == ' ')
 	{
 		if (all->c)
 		{
+			free(freel);
 			close(all->fd);
-			exit_error_free(line, "Duplicate C");
+			exit_error_free_all(all, "Duplicate C");
 		}
-		all->c = parse_color(all, line + 2);
+		all->c = parse_color(all, line + 2, freel);
 	}
 }
 

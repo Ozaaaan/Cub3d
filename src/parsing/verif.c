@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verif.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:07:34 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/24 12:56:24 by cle-berr         ###   ########.fr       */
+/*   Updated: 2025/03/24 15:16:05 by ozdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int	is_texture(char *line)
 
 int	is_color(char *line)
 {
-	return (line[0] == 'F' || line[0] == 'C');
+	return ((line[0] == 'F' && line[1] == ' ') || (line[0] == 'C'
+			&& line[1] == ' '));
 }
 
 int	is_allowed_char(char *line)

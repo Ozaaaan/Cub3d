@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cle-berr <cle-berr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ozdemir <ozdemir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 14:20:20 by ozdemir           #+#    #+#             */
-/*   Updated: 2025/03/24 12:57:46 by cle-berr         ###   ########.fr       */
+/*   Updated: 2025/03/24 17:39:54 by ozdemir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,14 +83,14 @@ int					is_texture(char *line);
 int					is_allowed_char(char *line);
 int					is_color(char *line);
 void				store_map(t_all *all, char *line);
-void				store_color(t_all *all, char *line);
-void				store_texture(t_all *all, char *line);
+void				store_color(t_all *all, char *line, char *freel);
+void				store_texture(t_all *all, char *line, char *freel);
 void				init_all(t_all *all);
 int					wall_checker(t_all *all);
 int					count_tab(char **tab);
 int					ft_strlenn(char *str);
 char				*skip_space(char *line);
-void				storing(t_all *all, char *line);
+void				storing(t_all *all, char *line, char *freel);
 void				check_config(t_all *all);
 void				count_player(t_all *all);
 void				print_map_data(t_all *all);
@@ -98,10 +98,10 @@ int					is_player(char c);
 int					char_allowed(char c);
 int					check_valid_chars(t_all *all);
 int					char_allowed(char c);
-void				store_texture_ea(t_all *all, char *line);
-void				store_texture_we(t_all *all, char *line);
-void				store_texture_no(t_all *all, char *line);
-void				store_texture_so(t_all *all, char *line);
+void				store_texture_ea(t_all *all, char *line, char *freel);
+void				store_texture_we(t_all *all, char *line, char *freel);
+void				store_texture_no(t_all *all, char *line, char *freel);
+void				store_texture_so(t_all *all, char *line, char *freel);
 int					is_valid_texture_path(char *path);
 void				create_main_image(t_all *all);
 void				render(void *param);
@@ -111,6 +111,7 @@ void				exit_error_free_all(t_all *all, char *str);
 int					strdigit(char **str);
 void				handle_empty_line(int *map_started, int *empty_line,
 						char *line);
+void				comma_check(t_all *all, char *line, char *freel);
 
 void				cast_rays(t_all *all);
 void				init_ray(t_all *all, int x, t_ray *ray);
